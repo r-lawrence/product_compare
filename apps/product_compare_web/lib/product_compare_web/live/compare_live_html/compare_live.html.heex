@@ -1,0 +1,40 @@
+<div class="main-container">
+
+  <h1>Submit url's for a BestBuy product to create a comparison</h1>
+  <.form class="user-input" for={@user_input} phx-submit="submit">
+    <.input class="url-input" type="text" name="url_1" field={@user_input[:url_1]} value={@user_input[:url_1]}/>
+    <.input class="url-input" class="url-input" type="text" name="url_2" field={@user_input[:url_2]} value={@user_input[:url_2]}/>
+    <.input class="url-input" class="url-input" type="text" name="url_3" field={@user_input[:url_3]} value={@user_input[:url_3]}/>
+    <button class="user-input-submit">Sumbit</button>
+  </.form>
+
+
+
+
+  <%= if @product_data do %>
+    <.async_result :let={product_data} assign={@product_data}>
+      <:loading>loading product data...</:loading>
+      <div class="overall-comparison-container">
+        <%= if @overall_comparison do%>
+          <h2>Summary</h2>
+          <span class="complete-comparison"><%= @overall_comparison["overall_comparison"] %></span>
+          <h3>Best for Price: <%=@overall_comparison["best_for_price"]["name"]%></h3>
+          <span><%= @overall_comparison["best_for_price"]["explanation"] %></span>
+          <h3>Best Overall Value: <%= @overall_comparison["best_overall_value"]["name"] %></h3>
+          <span><%= @overall_comparison["best_overall_value"]["explanation"] %></span>
+          <h3>Best Performance: <%= @overall_comparison["best_performance"]["name"]%></h3>
+          <span><%= @overall_comparison["best_performance"]["explanation"]%></span>
+
+        <% else %>
+        loading the overall comparison...
+        
+        <%end %>
+      </div>
+      <div class="products-container">
+        <%= for item <- product_data do %>
+            <%= Phoenix.Template.render(ProductCompareWeb.CompareLiveHTML, "product_live", "html", item) %>
+        <% end %>
+      </div>
+    </.async_result>
+  <% end %>
+</div>

@@ -1,0 +1,42 @@
+<div id={"product-container" <> " " <> @id} class="product-container" phx-hook="ProductContainer" product-sku={@sku}>
+
+  <div class="img-container">
+    <img class="product-image" src={@image}>
+  </div>
+
+  <h2 class="product-title"> <%= @name %> </h2>
+
+  <p class="product-price"><%= @price %></p>
+
+  <p class="toggle-features">Show Features</p>
+
+  <ul class="feature-list hidden">
+    <%= for item <- @features do %>
+      <li class="product-feature"><%= item %></li>
+    <% end %>
+  </ul>
+
+
+  <%= if @review_summary do %>
+    <div id={"summary-container" <> " " <> "review-summary-container-#{@id}"} phx-hook="ReviewSummaryContainer">
+      <p class="summary toggle-user-likes">Show Summary</p>
+
+      <ul class="user-likes-dislikes hidden">
+        <p class="user-liked-title">Users Liked</p>
+
+        <%= for item <- @review_summary["likes"] do %>
+          <li class="liked-item"> <%= item %> </li>
+        <% end %>
+
+        <p class="user-dislike-title">Users Disliked </p>
+
+        <%= for item <- @review_summary["dislikes"] do %>
+          <li class="disliked-item"> <%= item %> </li>
+        <% end %>
+      </ul>
+    </div>
+  <% else  %>
+    loading review summary....
+  <% end %>
+</div>
+

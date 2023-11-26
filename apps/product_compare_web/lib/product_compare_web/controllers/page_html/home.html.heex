@@ -1,0 +1,21 @@
+<div>
+  <.form for={@user_input} phx-submit="submit">
+    <.input type="text" name="url_1" field={@user_input[:url_1]} value={@user_input[:url_1]}/>
+    <.input type="text" name="url_2" field={@user_input[:url_2]} value={@user_input[:url_2]}/>
+    <.input type="text" name="url_3" field={@user_input[:url_3]} value={@user_input[:url_3]}/>
+    <button>Sumbit</button>
+  </.form>
+
+
+  <%= if @product_data.loading do %>
+  loading...
+  <% end %>
+
+<%!-- <.async_result :let={product_data} assign={@product_data}>
+
+  <:loading>Loading organization...</:loading>
+  <:failed :let={_reason}>there was an error loading the organization</:failed>
+  <div> some data</div> 
+</.async_result> --%>
+</div>
+
