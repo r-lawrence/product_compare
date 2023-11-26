@@ -1,3 +1,1 @@
 # ProductDatabase
-
-**TODO: Add description**
