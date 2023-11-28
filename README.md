@@ -16,7 +16,7 @@
 2. Open a new terminal and start chromediver using `chromedriver`
 
 3. From root directory of project run 
-    - `mix deps.get` to get all depencies.
+    - `mix deps.get` to get all dependencies.
 
     - `mix deps.compile` to compile the application
 
